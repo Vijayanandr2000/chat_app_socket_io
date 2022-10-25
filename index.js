@@ -6,6 +6,16 @@ const app = express();
 http = http.Server(app);
 const io = socket(http);
 
+//when the client connects
+io.on('connection', (socket) =>{
+    console.log('One client connected');
+
+    //when the client connects disconnect
+    socket.on('disconnect',()=>{
+        console.log('One client disconnected');
+    })
+})
+
 app.use('/', (req,res) => {
     res.sendFile(__dirname + '/index.html');
 });
