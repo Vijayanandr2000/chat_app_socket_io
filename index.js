@@ -10,6 +10,10 @@ const io = socket(http);
 io.on('connection', (socket) =>{
     console.log('One client connected');
 
+    setTimeout(()=>{
+        socket.send('Hello from server after 5 seconds')
+    },5000)
+
     //when the client connects disconnect
     socket.on('disconnect',()=>{
         console.log('One client disconnected');
